@@ -17,6 +17,8 @@ public class MatrixGameManager : MonoBehaviour {
     public GameObject ElementPrefab = null;
     public Transform boardSpawnPosition = null;
     public DestroyAlgo desatroAlgo = DestroyAlgo.Iterative;
+    [HideInInspector]
+    public Camera mainCam = null;
 
     private static MatrixGameManager instance;
     public static MatrixGameManager Instance
@@ -32,6 +34,8 @@ public class MatrixGameManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+
+        mainCam = Camera.main;
 
         board = new Board();
         board.Init(boardData);

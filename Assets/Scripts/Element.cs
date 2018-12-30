@@ -63,7 +63,7 @@ public class Element : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(0))
         {
-            Vector3 wp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 wp = MatrixGameManager.Instance.mainCam.ScreenToWorldPoint(Input.mousePosition);
             if (col.OverlapPoint(wp))
             {
                 MatrixGameManager.Instance.UpdateSelectedElement(this);

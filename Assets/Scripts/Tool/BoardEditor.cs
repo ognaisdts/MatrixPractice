@@ -33,7 +33,7 @@ public class BoardEditor : MonoBehaviour {
         }
 
         BoardData boadData = ScriptableObject.CreateInstance<BoardData>();
-        AssetDatabase.CreateAsset(boadData, "Assets/boadData.asset");
+        AssetDatabase.CreateAsset(boadData, "Assets/boardData.asset");
         AssetDatabase.StartAssetEditing();
 
 
