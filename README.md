@@ -33,5 +33,8 @@ Game logic is as following steps:
 <li>Perform all moving animation of elements.</li></ul>
 
 <p>
-<a href="https://youtu.be/o_50B9cjsyg">Demo</a>
+<a href="https://youtu.be/V8UHrdGWS_M">Demo</a>
 </p>
+[![](http://img.youtube.com/vi/V8UHrdGWS_M/0.jpg)](http://www.youtube.com/watch?v=V8UHrdGWS_M "")
+
+
