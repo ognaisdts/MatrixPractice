@@ -35,6 +35,6 @@ Game logic is as following steps:
 <p>
 <a href="https://youtu.be/V8UHrdGWS_M">Demo</a>
 </p>
-[![](http://img.youtube.com/vi/V8UHrdGWS_M/0.jpg)](http://www.youtube.com/watch?v=V8UHrdGWS_M "")
+[![DEMO](http://img.youtube.com/vi/V8UHrdGWS_M/0.jpg)](http://www.youtube.com/watch?v=V8UHrdGWS_M "DEMO")
 
 
