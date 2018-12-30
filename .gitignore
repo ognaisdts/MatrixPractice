@@ -1,0 +1,9 @@
+Library/
+obj/
+.vs/MatrixTest/v15/Server/sqlite3/storage.ide-wal
+.vs/MatrixTest/v15/Server/sqlite3/storage.ide-shm
+.vs/MatrixTest/v15/Server/sqlite3/storage.ide
+.vs/MatrixTest/v15/Server/sqlite3/db.lock
+.vs/MatrixTest/v15/.suo
+Assembly-CSharp.csproj
+Assembly-CSharp-Editor.csproj
