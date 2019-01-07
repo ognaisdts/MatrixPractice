@@ -9,48 +9,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06befb4ed95f41546b737d46aebf5e8d, type: 3}
-  m_Name: boardData
+  m_Name: BoardData 1
   m_EditorClassIdentifier: 
-  rowSize: 6
+  rowSize: 4
   colSize: 6
   cells:
-  - data: 1
-    moveDirection: {x: 1, y: 0}
-  - data: 1
-    moveDirection: {x: 1, y: 0}
-  - data: 1
-    moveDirection: {x: 1, y: 0}
   - data: 3
     moveDirection: {x: 1, y: 0}
-  - data: 1
-    moveDirection: {x: 1, y: 0}
-  - data: 2
-    moveDirection: {x: 0, y: 0}
   - data: 3
     moveDirection: {x: 1, y: 0}
   - data: 2
     moveDirection: {x: 1, y: 0}
   - data: 3
     moveDirection: {x: 1, y: 0}
-  - data: 1
-    moveDirection: {x: 1, y: 0}
-  - data: 3
-    moveDirection: {x: 1, y: 0}
-  - data: 2
-    moveDirection: {x: 0, y: 0}
-  - data: 3
-    moveDirection: {x: 1, y: 0}
-  - data: 1
-    moveDirection: {x: 1, y: 0}
   - data: 2
     moveDirection: {x: 1, y: 0}
   - data: 3
     moveDirection: {x: 1, y: 0}
-  - data: 1
+  - data: 2
+    moveDirection: {x: 1, y: 0}
+  - data: 2
     moveDirection: {x: 1, y: 0}
   - data: 1
-    moveDirection: {x: 0, y: 0}
-  - data: 3
     moveDirection: {x: 1, y: 0}
   - data: 2
     moveDirection: {x: 1, y: 0}
@@ -60,29 +40,25 @@ MonoBehaviour:
     moveDirection: {x: 1, y: 0}
   - data: 1
     moveDirection: {x: 1, y: 0}
-  - data: 3
-    moveDirection: {x: 0, y: 0}
-  - data: 3
+  - data: 2
+    moveDirection: {x: 1, y: 0}
+  - data: 1
     moveDirection: {x: 1, y: 0}
   - data: 2
     moveDirection: {x: 1, y: 0}
   - data: 2
-    moveDirection: {x: 0, y: 0}
-  - data: 3
-    moveDirection: {x: 1, y: 0}
-  - data: 3
     moveDirection: {x: 1, y: 0}
   - data: 1
-    moveDirection: {x: 0, y: 0}
+    moveDirection: {x: 1, y: 0}
   - data: 1
     moveDirection: {x: 1, y: 0}
-  - data: 3
+  - data: 1
     moveDirection: {x: 1, y: 0}
-  - data: 3
-    moveDirection: {x: 1, y: -1}
-  - data: 3
+  - data: 2
     moveDirection: {x: 1, y: 0}
   - data: 3
     moveDirection: {x: 1, y: 0}
-  - data: 3
-    moveDirection: {x: 0, y: 0}
+  - data: 2
+    moveDirection: {x: 1, y: 0}
+  - data: 1
+    moveDirection: {x: 1, y: 0}

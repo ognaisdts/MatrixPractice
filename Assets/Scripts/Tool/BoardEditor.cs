@@ -14,7 +14,7 @@ public class BoardEditor : MonoBehaviour {
     public int colSize = 3;
 
     public bool randomDataWhenGenerator = false;
-
+    public BoardData dataToOpen = null;
 
 
     public void CreateBoardData()
@@ -28,12 +28,12 @@ public class BoardEditor : MonoBehaviour {
         {
             for (int j = 0; j < colSize; j++)
             {
-                cellsInEditor[i * rowSize + j] = cellsHolder.transform.GetChild(i * rowSize + j).GetComponent<EditableCell>();
+                cellsInEditor[i * colSize + j] = cellsHolder.transform.GetChild(i * colSize + j).GetComponent<EditableCell>();
             }
         }
-
+        string assetPathAndName = AssetDatabase.GenerateUniqueAssetPath("Assets/BoardDatas/BoardData.asset");
         BoardData boadData = ScriptableObject.CreateInstance<BoardData>();
-        AssetDatabase.CreateAsset(boadData, "Assets/boardData.asset");
+        AssetDatabase.CreateAsset(boadData, assetPathAndName);
         AssetDatabase.StartAssetEditing();
 
 
@@ -44,19 +44,19 @@ public class BoardEditor : MonoBehaviour {
         {
             for (int j = 0; j < colSize; j++)
             {
-                boadData.cells[i*rowSize+ j] = new CellData();
-                boadData.cells[i * rowSize + j].data = cellsInEditor[i*rowSize + j].Data;
+                boadData.cells[i * colSize + j] = new CellData();
+                boadData.cells[i * colSize + j].data = cellsInEditor[i* colSize + j].Data;
 
-                if (cellsInEditor[i * rowSize + j].moveDirection == MoveDir.RIGHT)
-                    boadData.cells[i * rowSize + j].moveDirection = Vector2.right;
-                if (cellsInEditor[i * rowSize + j].moveDirection == MoveDir.RIGHTUP)
-                    boadData.cells[i * rowSize + j].moveDirection = Vector2.right + Vector2.up;
-                if (cellsInEditor[i * rowSize + j].moveDirection == MoveDir.RIHTDOWN)
-                    boadData.cells[i * rowSize + j].moveDirection = Vector2.right + Vector2.down;
+                if (cellsInEditor[i * colSize + j].moveDirection == MoveDir.RIGHT)
+                    boadData.cells[i * colSize + j].moveDirection = Vector2.right;
+                if (cellsInEditor[i * colSize + j].moveDirection == MoveDir.RIGHTUP)
+                    boadData.cells[i * colSize + j].moveDirection = Vector2.right + Vector2.up;
+                if (cellsInEditor[i * colSize + j].moveDirection == MoveDir.RIHTDOWN)
+                    boadData.cells[i * colSize + j].moveDirection = Vector2.right + Vector2.down;
 
-                if (cellsInEditor[i * rowSize + j].moveDirection == MoveDir.NONE)
+                if (cellsInEditor[i * colSize + j].moveDirection == MoveDir.NONE)
                 {
-                    boadData.cells[i * rowSize + j].moveDirection = Vector2.zero;
+                    boadData.cells[i * colSize + j].moveDirection = Vector2.zero;
                 }
             }
         }
@@ -71,6 +71,8 @@ public class BoardEditor : MonoBehaviour {
 
     public void GenerateBoardInEditor()
     {
+        DeleteBoard();
+
         if (cellsHolder == null)
         {
             cellsHolder = new GameObject("CellsHolder");
@@ -86,10 +88,11 @@ public class BoardEditor : MonoBehaviour {
     }
     public void DeleteBoard()
     {
-        GameObject cellsHolder = transform.Find("CellsHolder").gameObject;
+
+        Transform cellsHolder = transform.Find("CellsHolder");
 
         if (cellsHolder != null)
-            DestroyImmediate(cellsHolder);
+            DestroyImmediate(cellsHolder.gameObject);
 
         if (cellsInEditor != null)
         {
@@ -107,14 +110,65 @@ public class BoardEditor : MonoBehaviour {
             for (int j = 0; j < colSize; j++)
             {
                 GameObject newEditableCell = Instantiate(cellRef, cellsHolder.transform) as GameObject;
-                cellsInEditor[i * rowSize + j] = newEditableCell.GetComponent<EditableCell>();
-                cellsInEditor[i * rowSize + j].posInCells = new Vector2(i, j);
+                cellsInEditor[i * colSize + j] = newEditableCell.GetComponent<EditableCell>();
+                cellsInEditor[i * colSize + j].posInCells = new Vector2(i, j);
 
                 if (randomDataWhenGenerator)
                 {
-                    cellsInEditor[i * rowSize + j].Data = Random.Range(1,4);
+                    cellsInEditor[i * colSize + j].Data = Random.Range(1,4);
                 }
 
+                newEditableCell.name = "Cell(" + i + "," + j + ")";
+                newEditableCell.transform.localPosition = new Vector3(j, i);
+            }
+        }
+    }
+
+    public void InitFromBoardData(BoardData data)
+    {
+        DeleteBoard();
+
+        if (cellsHolder == null)
+        {
+            cellsHolder = new GameObject("CellsHolder");
+            cellsHolder.transform.SetParent(this.transform);
+        }
+
+        if (cellsInEditor != null)
+        {
+            cellsInEditor = null;
+        }
+
+        rowSize = data.rowSize;
+        colSize = data.colSize;
+        cellsInEditor = new EditableCell[rowSize * colSize];
+
+        //init each Cell
+        for (int i = 0; i < rowSize; i++)
+        {
+            for (int j = 0; j < colSize; j++)
+            {
+                GameObject newEditableCell = Instantiate(cellRef, cellsHolder.transform) as GameObject;
+                cellsInEditor[i * colSize + j] = newEditableCell.GetComponent<EditableCell>();
+                cellsInEditor[i * colSize + j].posInCells = new Vector2(i, j);
+
+                cellsInEditor[i * colSize + j].Data = data.cells[i * colSize + j].data;
+                if (data.cells[i * colSize + j].moveDirection == Vector2.right)
+                {
+                    cellsInEditor[i * colSize + j].moveDirection = MoveDir.RIGHT;
+                }
+                else if (data.cells[i * colSize + j].moveDirection == Vector2.right + Vector2.up)
+                {
+                    cellsInEditor[i * colSize + j].moveDirection = MoveDir.RIGHTUP;
+                }
+                else if (data.cells[i * colSize + j].moveDirection == Vector2.right + Vector2.down)
+                {
+                    cellsInEditor[i * colSize + j].moveDirection = MoveDir.RIHTDOWN;
+                }
+                else
+                {
+                    cellsInEditor[i * colSize + j].moveDirection = MoveDir.NONE;
+                }
                 newEditableCell.name = "Cell(" + i + "," + j + ")";
                 newEditableCell.transform.localPosition = new Vector3(j, i);
             }

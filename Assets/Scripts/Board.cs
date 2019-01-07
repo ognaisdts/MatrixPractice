@@ -28,8 +28,8 @@ public class Board {
 
                 Cell curCell = cells[i, j];
 
-                curCell.Init(new Vector2(j + offset, i + offset), new Vector2Int(i,j), boardData.cells[i*rowSize + j].data);
-                curCell.moveDirection = boardData.cells[i * rowSize + j].moveDirection;
+                curCell.Init(new Vector2(j + offset, i + offset), new Vector2Int(i,j), boardData.cells[i* colSize + j].data);
+                curCell.moveDirection = boardData.cells[i * colSize + j].moveDirection;
                 //create game object on current cell
                 GameObject newObj = MatrixGameManager.Instance.CreateElementObject();
                 Element element = newObj.GetComponent<Element>();
